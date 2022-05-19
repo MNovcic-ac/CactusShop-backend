@@ -4,6 +4,7 @@ import com.example.cactusshop.dto.delivery.CreateDeliveryDto;
 import com.example.cactusshop.dto.delivery.DeliveryResponseDto;
 import com.example.cactusshop.dto.delivery.UpdateDeliveryDto;
 import com.example.cactusshop.mapper.DeliveryMapper;
+import com.example.cactusshop.security.SecurityService;
 import com.example.cactusshop.service.DeliveryService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +27,8 @@ public class DeliveryController {
     private final DeliveryMapper deliveryMapper;
 
     @GetMapping
-    public List<DeliveryResponseDto> getDeliveries(){
+    public List<DeliveryResponseDto> getDeliveries(@RequestHeader("authorization") String token){
+        SecurityService.validateBasic(token);
         return deliveryMapper.mapToResponse(deliveryService.getDeliveries());
     }
 

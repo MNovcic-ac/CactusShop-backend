@@ -4,9 +4,13 @@ server:
 spring:
   jackson.default-property-inclusion: NON_NULL
   jpa:
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: create-drop
   datasource:
+    data: classpath:/sql/data.sql
     url: jdbc:postgresql://localhost:5432/cactusShop
     username: postgres
     password: postgres
+    sql-script-encoding: UTF-8
+    initialization-mode: always

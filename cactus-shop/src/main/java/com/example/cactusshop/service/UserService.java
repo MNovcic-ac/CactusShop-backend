@@ -22,6 +22,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+    private final RoleService roleService;
 
     public User create(CreateUserDto createUserDto){
         if(findByEmail(createUserDto.getContactEmail()) != null)
@@ -29,7 +30,7 @@ public class UserService {
 
         User created = userMapper.mapToEntity(createUserDto);
         created.setPassword(passwordEncoder.encode(created.getPassword()));
-
+        created.setRole(roleService.getById("bf447708-040e-4149-aec3-1f16cacf44ed"));
         log.info("User successfully registered {}", created.toString());
         return userRepository.save(created);
     }

@@ -27,8 +27,8 @@ public abstract class SupplierMapper {
 
     @Named("mapToResponse")
     @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "name")
-    @Mapping(target = "contactPhone")
+    @Mapping(target = "supplierName")
+    @Mapping(target = "supplierContactPhone")
     public abstract SupplierResponseDto mapToResponse(Supplier supplier);
 
     @IterableMapping(qualifiedByName = "mapToResponse")

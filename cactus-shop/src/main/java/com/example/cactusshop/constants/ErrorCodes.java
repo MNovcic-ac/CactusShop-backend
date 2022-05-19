@@ -49,4 +49,9 @@ public final class ErrorCodes {
 
     // order products
     public static final String ORDER_PRODUCT_NOT_FOUND = "OP001";
+
+    // login
+    public static final String PASSWORD_EMAIL_MISMATCH = "L001";
+
+    public static final String TOKEN_NOT_VALID = "T001";
 }

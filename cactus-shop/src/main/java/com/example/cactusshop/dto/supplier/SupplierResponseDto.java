@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class SupplierResponseDto {
 
-    private String name;
+    private String supplierName;
 
-    private String contactPhone;
+    private String supplierContactPhone;
 }

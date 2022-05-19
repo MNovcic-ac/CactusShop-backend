@@ -4,7 +4,9 @@ import com.example.cactusshop.dto.user.CreateUserDto;
 import com.example.cactusshop.dto.user.UpdateUserDto;
 import com.example.cactusshop.dto.user.UserResponseDto;
 import com.example.cactusshop.mapper.UserMapper;
+import com.example.cactusshop.security.SecurityService;
 import com.example.cactusshop.service.UserService;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +32,7 @@ public class UsersController {
     }
 
     @PutMapping("/{uuid}")
-    public UserResponseDto update(@RequestBody UpdateUserDto updateUserDto, @PathVariable String uuid){
+    public UserResponseDto update(@RequestBody UpdateUserDto updateUserDto, @PathVariable String uuid, @PathVariable String token) throws UnsupportedEncodingException {
         return userMapper.mapToResponse(userService.updateUser(updateUserDto, uuid));
     }
 

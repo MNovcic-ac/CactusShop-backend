@@ -21,13 +21,13 @@ public abstract class DeliveryCompanyMapper {
     @Named("mapToEntity")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "companyName")
-    @Mapping(target = "comapnyContact")
+    @Mapping(target = "companyContact")
     public abstract DeliveryCompany mapToEntity(CreateCompanyDto createCompanyDto);
 
     @Named("mapToResponse")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "companyName")
-    @Mapping(target = "comapnyContact")
+    @Mapping(target = "companyContact")
     public abstract CompanyResponseDto mapToResponse(DeliveryCompany deliveryCompany);
 
     @IterableMapping(qualifiedByName = "mapToResponse")
