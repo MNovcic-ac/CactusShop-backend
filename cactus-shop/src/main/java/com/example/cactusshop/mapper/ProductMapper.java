@@ -22,10 +22,14 @@ public abstract class ProductMapper {
 
     @Named("mapToResponse")
     @BeanMapping(ignoreByDefault = true)
-    @Mapping(target = "productName")
+    @Mapping(target = "id", source = "uuid")
+    @Mapping(target = "name", source = "productName")
     @Mapping(target = "price")
+    @Mapping(target = "description", source = "productDescription")
+    @Mapping(target = "lifeExpectancy")
     @Mapping(target = "supplier", source = "product.supplier.uuid")
     @Mapping(target = "stock")
+    @Mapping(target = "image")
     public abstract ProductResponseDto mapToResponse(Product product);
 
     @Named("mapToEntity")
@@ -35,6 +39,7 @@ public abstract class ProductMapper {
     @Mapping(target = "price")
     @Mapping(target = "lifeExpectancy")
     @Mapping(target = "stock")
+    @Mapping(target = "image")
     public abstract Product mapToEntity(CreateProductDto createProductDto);
 
     @IterableMapping(qualifiedByName = "mapToResponse")

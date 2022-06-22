@@ -7,6 +7,7 @@ import com.example.cactusshop.entity.OrderProduct;
 import com.example.cactusshop.mapper.OrderProductMapper;
 import com.example.cactusshop.service.OrderProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/order-products")
@@ -23,11 +25,6 @@ public class OrderProductController {
 
     private final OrderProductService orderProductService;
     private final OrderProductMapper orderProductMapper;
-
-    @PostMapping
-    public OrderProductResponseDto create(@RequestBody CreateOrderProductDto createOrderProductDto){
-        return orderProductMapper.mapToResponse(orderProductService.create(createOrderProductDto));
-    }
 
     @DeleteMapping("/{uuid}")
     public void delete(@PathVariable String uuid){

@@ -9,11 +9,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProductResponseDto {
 
-    private String productName;
+    private String id;
+
+    private String name;
 
     private Long price;
 
     private String supplier;
 
     private Integer stock;
+
+    private Long lifeExpectancy;
+
+    private String description;
+
+    private String image;
 }

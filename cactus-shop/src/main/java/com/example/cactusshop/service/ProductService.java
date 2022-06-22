@@ -10,8 +10,10 @@ import com.example.cactusshop.exception.ConflictException;
 import com.example.cactusshop.exception.NotFoundException;
 import com.example.cactusshop.mapper.ProductMapper;
 import com.example.cactusshop.repository.ProductRepository;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -50,8 +52,15 @@ public class ProductService {
         });
     }
 
-    public List<Product> getProducts(){
-        return productRepository.findAll();
+    public List<Product> getProducts(List<String> suppliers, Integer page){
+        if(suppliers!=null && !suppliers.isEmpty()) {
+            List<Supplier> suppliers1 = new ArrayList<>();
+            for (String id : suppliers) {
+                suppliers1.add(supplierService.getById(id));
+            }
+            return productRepository.getProducts(suppliers1, PageRequest.of((page-1), 20)).getContent();
+        }
+        return productRepository.getProducts(new ArrayList<>(),  PageRequest.of((page-1), 20)).getContent();
     }
 
     public Product update(UpdateProductDto updateProductDto, String uuid){

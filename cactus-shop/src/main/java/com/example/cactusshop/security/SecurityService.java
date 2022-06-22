@@ -32,6 +32,10 @@ public class SecurityService {
     public String authenticateUser(String username, String password) {
         User foundUser = userService.findByEmail(username);
 
+        if(foundUser == null){
+            throw new BadRequestException(ErrorCodes.USER_NOT_FOUND);
+        }
+
         if (passwordEncoder.matches(password, foundUser.getPassword())) {
             return generateToken(foundUser);
         } else {
@@ -89,6 +93,21 @@ public class SecurityService {
                 .parseClaimsJws(token).getBody();
 
         if(!claims.get("role").equals("basic")){
+            throw new ForbiddenException(ErrorCodes.UNAUTHORIZED);
+        }
+        log.info("Authorized basic user!");
+    }
+
+    public static void validateConcreteUser(String token, String uuid){
+        validateToken(token);
+
+        Claims claims = Jwts.parser()
+                .setSigningKey(DatatypeConverter.parseBase64Binary(secret))
+                .parseClaimsJws(token).getBody();
+
+        if(claims.get("user_id").equals(uuid) || claims.get("role").equals("admin")){
+
+        } else {
             throw new ForbiddenException(ErrorCodes.UNAUTHORIZED);
         }
         log.info("Authorized basic user!");

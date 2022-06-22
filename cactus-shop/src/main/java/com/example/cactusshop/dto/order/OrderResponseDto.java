@@ -14,11 +14,7 @@ public class OrderResponseDto {
 
     private Long amount;
 
-    private Long percentOff;
-
     private Integer totalNumberOfItems;
-
-    private boolean overNightDelivery;
 
     private OffsetDateTime orderedAt;
 }

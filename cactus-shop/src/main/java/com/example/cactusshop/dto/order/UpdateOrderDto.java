@@ -12,11 +12,7 @@ public class UpdateOrderDto {
 
     private Long amount;
 
-    private Long percentOff;
-
     private Integer totalNumberOfItems;
-
-    private boolean overNightDelivery;
 
     @NotNull
     private String userId;

@@ -53,5 +53,8 @@ public final class ErrorCodes {
     // login
     public static final String PASSWORD_EMAIL_MISMATCH = "L001";
 
-    public static final String TOKEN_NOT_VALID = "T001";
+    public static final String TOKEN_NOT_VALID = "TT001";
+
+    // users
+    public static final String USER_NOT_FOUND = "U001";
 }

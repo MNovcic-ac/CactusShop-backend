@@ -38,4 +38,7 @@ public class Product extends CreatedBase{
     @ManyToOne
     @JoinColumn(name = "fk_product_product_type")
     private ProductType type;
+
+    @Column
+    private String image;
 }

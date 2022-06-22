@@ -30,4 +30,7 @@ public class CreateProductDto {
 
     @NotNull
     private Integer stock;
+
+    @NotNull
+    private String image;
 }
